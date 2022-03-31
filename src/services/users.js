@@ -4,7 +4,7 @@ export default function users() {
   return client.auth.session() && client.auth.session().user.email;
 }
 
-export async function singUpUser(email, password) {
+export async function signUpUser(email, password) {
   const { user, error } = await client.auth.signUpUser({ email, password });
   if (error) {
     throw error;
