@@ -1,19 +1,34 @@
 import React, { useState } from 'react';
-import { signInUser, signUpUser } from '../../services/users';
+import { useHistory } from 'react-router-dom';
+import { signInUser, signupUser } from '../../services/users';
 
-export default function Home() {
+
+
+export default function Auth({ setCurrentUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [type, setType] = useState('sign-in');
+  const history = useHistory();
 
-  const handleSubmit = async () => {
-    if (type === 'sign-in'){
-      const resp = await signInUser(email, password);
-    } else {
-      const resp = await signUpUser(email, password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+    
+      if (type === 'sign-in'){
+        const data = await signInUser(email, password);
+        setCurrentUser(data);
+        history.push('/');
+      } else {
+        const data = await signupUser(email, password);
+        setCurrentUser(data);
+        history.push('/');
+      } 
+    } catch (e){
+      setError(e.message);
     }
   };
+  
 
 
   return (
@@ -24,14 +39,14 @@ export default function Home() {
         {error && <p>{error}</p>}
         <form className='auth' onSubmit={handleSubmit}>
           <label>
-        Email:
+            Email:
             <input type='auth' value={email} onChange={(e) => setEmail(e.target.value)}/>
           </label>
           <label>
             Password:
             <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
           </label>
-          <button>Sign In</button>  
+          <button>Enter</button>  
         </form>
       </h1>
     </div>
