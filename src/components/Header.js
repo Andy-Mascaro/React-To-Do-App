@@ -1,15 +1,18 @@
 import React from 'react';
-// import { logout } from '../services/users';
+import { logout } from '../services/users';
 
-export default function Header() {
-//   const handleLogout = async () => {
-//     await logout();
-        
-//   };
+export default function Header({ currentUser, setCurrentUser }) {
+  const handleLogout = async () => {
+    await logout();
+    setCurrentUser('');
+  };
   return (
     <div className='header'>
-      {/* <button className='out' onClick={handleLogout}>Logout</button> */}
-
+      {currentUser && 
+      <div onClick={handleLogout}>
+        <button className='out' >Logout</button>
+      </div>
+      }
 
 
 

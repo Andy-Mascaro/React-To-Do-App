@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
-// import Header from './components/Header';
+import Header from './components/Header';
 import Home from './Views/Home/Home';
 import users from './services/users';
 import Todos from './Views/Todos';
@@ -12,10 +12,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App"></div>
+      <Header currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
-        {/* <Header /> */}
+       
         <Route exact path='/'>
-          <Home currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+          <Home setCurrentUser={setCurrentUser}/>
         </Route>
         <Route exact path='/todos'>
           {currentUser ? <Todos /> : <Redirect to= '/'/>} 

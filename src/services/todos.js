@@ -1,16 +1,21 @@
 import { client, checkError } from './client';
 
-export const getTodos = async () => {
-  const resp = await client.from('todos').select();
+export async function getTodos() {
+  const resp = await client.from('todos').select('*');
   return checkError(resp);
-};
+}
 
-export const renderTodo = async (todo) => {
-  const resp = await client.from('todos').insert(todo).select();
+export async function renderTodo(data) {
+  const resp = await client.from('todos').insert(data);
   return checkError(resp);
-};
+}
 
 export async function deleteTodo(id) {
   const resp = await client.from('todos').delete().match({ id });
+  return checkError(resp);
+}
+
+export async function complete(data) {
+  const resp = await client.from('todos').update(data).match({ id: data.id }).single();
   return checkError(resp);
 }
