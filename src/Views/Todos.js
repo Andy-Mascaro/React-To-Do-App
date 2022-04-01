@@ -1,4 +1,4 @@
-import { getTodos, renderTodo, complete, deleteTodo } from '../services/todos';
+import { getTodos, renderTodo, complete } from '../services/todos';
 import { useState, useEffect } from 'react';
 import './Todos.css';
 

@@ -13,9 +13,6 @@ export default function Header({ currentUser, setCurrentUser }) {
         <button className='out' >Logout</button>
       </div>
       }
-
-
-
     </div>
   );
 }
