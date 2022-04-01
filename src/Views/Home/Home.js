@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './Home.css';
 import { signInUser, signupUser } from '../../services/users';
-
-
 
 export default function Auth({ setCurrentUser }) {
   const [email, setEmail] = useState('');
@@ -18,11 +17,11 @@ export default function Auth({ setCurrentUser }) {
       if (type === 'sign-in'){
         const data = await signInUser(email, password);
         setCurrentUser(data);
-        history.push('/');
+        history.push('/todos');
       } else {
         const data = await signupUser(email, password);
         setCurrentUser(data);
-        history.push('/');
+        history.push('/todos');
       } 
     } catch (e){
       setError(e.message);

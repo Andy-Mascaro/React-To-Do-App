@@ -4,7 +4,8 @@ import './App.css';
 // import Header from './components/Header';
 import Home from './Views/Home/Home';
 import users from './services/users';
-
+import Todos from './Views/Todos';
+import { Redirect } from 'react-router-dom';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(users());
@@ -13,8 +14,11 @@ function App() {
       <div className="App"></div>
       <Switch>
         {/* <Header /> */}
-        <Route path='/'>
+        <Route exact path='/'>
           <Home currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+        </Route>
+        <Route exact path='/todos'>
+          {currentUser ? <Todos /> : <Redirect to= '/'/>} 
         </Route>
       </Switch>
     </BrowserRouter>

@@ -9,3 +9,8 @@ export const renderTodo = async (todo) => {
   const resp = await client.from('todos').insert(todo).select();
   return checkError(resp);
 };
+
+export async function deleteTodo(id) {
+  const resp = await client.from('todos').delete().match({ id });
+  return checkError(resp);
+}
