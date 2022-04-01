@@ -1,4 +1,10 @@
 .completed {
     text-decoration: line-through;
-    color:aqua
+    color:blueviolet;
+    
+}
+.list {
+    cursor: pointer;
+    font-display: flex;
+    text-align: center;
 }

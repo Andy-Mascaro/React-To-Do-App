@@ -1,4 +1,4 @@
-import { getTodos, renderTodo, complete } from '../services/todos';
+import { getTodos, renderTodo, complete, deleteTodo } from '../services/todos';
 import { useState, useEffect } from 'react';
 import './Todos.css';
 
@@ -38,12 +38,23 @@ export default function Todos() {
       setError('Failed to complete');
     }
   };
+   
+//   const handleRemoveItem = (e) => {
+//     const name = e.target.getAttribute('name');
+//     deleteTodo(list.filter(item => item.name !== name));
+  
+    //  const removeTodo = async () => {
+    // await deleteTodo(todo);
+    // history.go(0);
+
+//   };
   return (
     <div className='list'>
       
       <div>  
         <label><input type='text' value= {todo} onChange={(e) => setAddLists(e.target.value)}/></label>
         <button onClick={handleSubmit}>Add New</button>
+        {/* <button onClick={removeTodo}>Remove</button> */}
       </div>
       {error && (
         <p>

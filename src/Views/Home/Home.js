@@ -24,14 +24,14 @@ export default function Auth({ setCurrentUser }) {
         history.push('/todos');
       } 
     } catch (e){
-      setError(e.message);
+      setError('Please Sign Up or Sign in');
     }
   };
   
 
 
   return (
-    <div>
+    <div className='button'>
       <h1>
         <span className={type === 'sign-in' ? 'active' : ''} onClick={() => setType('sign-in')}>Sign In</span>
         <span className={type === 'sign-up' ? 'active' : ''} onClick={() => setType('sign-up')}>Sign Up</span>
