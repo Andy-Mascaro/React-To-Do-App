@@ -13,7 +13,6 @@ export default function Auth({ setCurrentUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    
       if (type === 'sign-in'){
         const data = await signInUser(email, password);
         setCurrentUser(data);
@@ -28,8 +27,6 @@ export default function Auth({ setCurrentUser }) {
     }
   };
   
-
-
   return (
     <div className='button'>
       <h1>

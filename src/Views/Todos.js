@@ -1,6 +1,7 @@
 import { getTodos, renderTodo, complete } from '../services/todos';
 import { useState, useEffect } from 'react';
 import './Todos.css';
+import { deleteTodo } from '../services/todos';
 
 export default function Todos() {
   const [list, setList] = useState([]);
@@ -43,18 +44,22 @@ export default function Todos() {
 //     const name = e.target.getAttribute('name');
 //     deleteTodo(list.filter(item => item.name !== name));
   
-    //  const removeTodo = async () => {
-    // await deleteTodo(todo);
-    // history.go(0);
+  const removeTodo = async (id) => {
+    await deleteTodo(id);
+    const remove = await getTodos();
+    setList(remove);
+  };
 
-//   };
+    
+
+  
   return (
     <div className='list'>
       
       <div>  
         <label><input type='text' value= {todo} onChange={(e) => setAddLists(e.target.value)}/></label>
         <button onClick={handleSubmit}>Add New</button>
-        {/* <button onClick={removeTodo}>Remove</button> */}
+       
       </div>
       {error && (
         <p>
@@ -65,10 +70,12 @@ export default function Todos() {
       {list.map((lists) => (
         <div key={lists.id}>
           <h1 className={lists.complete ? 'completed' : ''} onClick={ () => finish(lists)}>{lists.todo}</h1>
+          <button onClick={() => removeTodo(lists.id)}>Remove</button>
         </div>
         
       ))}
      
+
     </div>
   );
 }
