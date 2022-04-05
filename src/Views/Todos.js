@@ -40,9 +40,6 @@ export default function Todos() {
     }
   };
    
-//   const handleRemoveItem = (e) => {
-//     const name = e.target.getAttribute('name');
-//     deleteTodo(list.filter(item => item.name !== name));
   
   const removeTodo = async (id) => {
     await deleteTodo(id);
@@ -50,9 +47,6 @@ export default function Todos() {
     setList(remove);
   };
 
-    
-
-  
   return (
     <div className='list'>
       
@@ -66,7 +60,8 @@ export default function Todos() {
           {error} <span onClick={() => setError('')}></span>
         </p>
       )}
-      <h1>Your Personal List</h1>
+      <h1>Your Personal List Of To DO</h1>
+      <h3>Click on a to do to complete it.</h3>
       {list.map((lists) => (
         <div key={lists.id}>
           <h1 className={lists.complete ? 'completed' : ''} onClick={ () => finish(lists)}>{lists.todo}</h1>
