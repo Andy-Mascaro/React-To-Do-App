@@ -6,7 +6,7 @@ export async function getTodos() {
 }
 
 export async function renderTodo(data) {
-  const resp = await client.from('todos').insert(data);
+  const resp = await client.from('todos').insert(data).single('');
   return checkError(resp);
 }
 
