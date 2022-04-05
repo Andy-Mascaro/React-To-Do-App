@@ -22,8 +22,10 @@ export default function Todos() {
 
   const handleSubmit = async () => {
     try { 
-      await renderTodo({ todo });
-      history.go(0);
+      const data = await renderTodo({ todo });
+      setList((prevState) => 
+        [...prevState, data]);
+      setAddLists(''); 
     } catch (e) {
       setError('Did not add to list');
     }
@@ -34,7 +36,8 @@ export default function Todos() {
   const finish = async (info) => {
     try {
       await complete({ ...info, complete:true });
-      history.go(0);
+      const done = await getTodos();
+      setList(done);
     } catch (e) {
       setError('Failed to complete');
     }
@@ -61,7 +64,7 @@ export default function Todos() {
         </p>
       )}
       <h1>Your Personal List Of To DO</h1>
-      <h3>Click on a to do to complete it.</h3>
+      <h3 className='complete-list'>Click on a to do to complete it.</h3>
       {list.map((lists) => (
         <div key={lists.id}>
           <h1 className={lists.complete ? 'completed' : ''} onClick={ () => finish(lists)}>{lists.todo}</h1>
